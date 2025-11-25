@@ -1,8 +1,20 @@
 body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-areas: 
+  ". main .";
   background-color: #F2F2F2;
 }
 
+main {
+  grid-area: main;
+}
+
 h1 {
+  margin: 0.25em;
   text-align: center;
 }
 
@@ -26,12 +38,13 @@ li {
 
 img {
   grid-area: image;
-  height: 400px;
-  width: 400px;
+  height: 15em;
+  width: 15em;
   justify-self: center;
 }
 
 button {
+  margin-bottom: 1em;
   grid-area: back;
   width: 10em;
   font-size: 1.5em;
@@ -65,7 +78,7 @@ p {
 #selected-pokemon {
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
-  row-gap: 2em;
+  row-gap: 1em;
   grid-template-areas: 
   ". name ."
   ". image ."
@@ -113,4 +126,31 @@ button:hover {
 #fire li,
 #grass li:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  ul {
+    display: grid;
+    row-gap: 0.5em;
+    padding-left: 0;
+  }
+
+  #starter-lists {
+    grid-template-columns: 1fr;
+  }
+
+  #pokemon-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  img {
+    height: 10em;
+    width: 10em;
+  }
+  
+  #pokemon-stats {
+    grid-template-columns: 1fr;
+  }
 }
