@@ -1,5 +1,10 @@
-const API = `https://pokeapi.co/api/v2/pokemon`
+const API = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=9`
 
 const getStarterPokemon = async () => {
-  const response = 
+  const response = await fetch(API);
+  const pokemonData = await response.json();
+  const starters = pokemonData.results;
+  console.log(starters);
 }
+
+getStarterPokemon();
