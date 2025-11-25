@@ -38,6 +38,10 @@ const PokemonImg = () => {
 
 const PokemonStat = (stat) => {
   const $p = document.createElement(`p`);
+  if (stat.stat.name.length < 3) {
+    $p.innerText = `${stat.stat.name.toUpperCase()}: ${stat.base_stat}`;
+    return $p;
+  }
   $p.innerText = `${stat.stat.name.charAt(0).toUpperCase()}${stat.stat.name.slice(1)}: ${stat.base_stat}`;
   return $p;
 }
