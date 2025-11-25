@@ -1,5 +1,6 @@
 const state = {
-  starters: []
+  starters: [],
+  selectedPokemon: {}
 }
 
 const API = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=9`;
@@ -10,20 +11,59 @@ const getStarterPokemon = async () => {
   const pokemonData = await response.json();
   const starters = pokemonData.results;
   state.starters = starters;
-  console.log(state.starters);
 }
 
-const pokemonListItem = (pokemonName) => {
+const getSelectedPokemon = async (pokemonUrl) => {
+  const response = await fetch(pokemonUrl);
+  const pokemonData = await response.json();
+  state.selectedPokemon = pokemonData;
+  RendorSelectedPokemon();
+}
+
+const PokemonIdName = () => {
+  const $h2 = document.createElement(`h2`);
+  const { name, id } = state.selectedPokemon;
+  $h2.innerText = `Pokédex Number: 00${id} ${name.charAt(0).toUpperCase()}${name.slice(1)}`;
+  return $h2;
+}
+
+const PokemonImg = () => {
+  const $img = document.createElement(`img`);
+  $img.alt = state.selectedPokemon.name + `facing front`;
+  $img.src = state.selectedPokemon.sprites.other[`official-artwork`].front_default;
+  return $img;
+}
+
+const PokemonStat = (stat) => {
+  const $p = document.createElement(`p`);
+  if (stat.stat.name.length < 3) {
+    $p.innerText = `${stat.stat.name.toUpperCase()}: ${stat.base_stat}`;
+    return $p;
+  }
+  $p.innerText = `${stat.stat.name.charAt(0).toUpperCase()}${stat.stat.name.slice(1)}: ${stat.base_stat}`;
+  return $p;
+}
+
+const PokemonStats = () => {
+  const $figure = document.createElement(`figure`);
+  $figure.id = `pokemon-stats`;
+  state.selectedPokemon.stats.forEach((stat) => {
+    $figure.append(PokemonStat(stat));
+  });
+  return $figure;
+}
+
+const PokemonListItem = (pokemon) => {
   const $li = document.createElement(`li`);
-  const upperCaseName = `${pokemonName.charAt(0).toUpperCase()}${pokemonName.slice(1)}`;
+  const upperCaseName = `${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
   $li.innerText = upperCaseName;
   $li.addEventListener(`click`, () => {
-    
+    getSelectedPokemon(pokemon.url);
   })
   return $li;
 }
 
-const pokemonList = (type) => {
+const PokemonList = (type) => {
   const $ul = document.createElement(`ul`);
   let pokemonLIs = []
   if (type === `grass`) {
@@ -34,12 +74,37 @@ const pokemonList = (type) => {
     pokemonLIs = state.starters.slice(6, 9);
   }
   pokemonLIs.forEach((pokemon) => {
-    $ul.append(pokemonListItem(pokemon.name));
+    $ul.append(PokemonListItem(pokemon));
   })
   return $ul;
 }
 
-RendorPokemonLists = () => {
+const RendorSelectedPokemon = () => {
+  const $pokemonLists = document.querySelector(`#starter-lists`);
+  $app.removeChild($pokemonLists);
+  const $section = document.createElement(`section`);
+  $section.id = `selected-pokemon`;
+  $section.innerHTML = `
+  <IdName></IdName>
+  <PokemonImg></PokemonImg>
+  <PokemonStats></PokemonStats>
+  <button>Go Back</button>
+  `;
+
+  $section.querySelector(`IdName`).replaceWith(PokemonIdName());
+  $section.querySelector(`PokemonImg`).replaceWith(PokemonImg());
+  $section.querySelector(`PokemonStats`).replaceWith(PokemonStats());
+  const backButton = $section.querySelector(`button`);
+  backButton.addEventListener(`click`, RendorPokemonLists);
+
+  $app.append($section);
+}
+
+const RendorPokemonLists = () => {
+  const $selectedPokemon = document.querySelector(`#selected-pokemon`);
+  if ($selectedPokemon) {
+    $app.removeChild($selectedPokemon);
+  }
   const $section = document.createElement(`section`);
   $section.id = `starter-lists`;
   $section.innerHTML = `
@@ -56,9 +121,9 @@ RendorPokemonLists = () => {
     <WaterList></WaterList>
   </figure>`;
 
-  $section.querySelector(`GrassList`).replaceWith(pokemonList(`grass`));
-  $section.querySelector(`FireList`).replaceWith(pokemonList(`fire`));
-  $section.querySelector(`WaterList`).replaceWith(pokemonList(`water`));
+  $section.querySelector(`GrassList`).replaceWith(PokemonList(`grass`));
+  $section.querySelector(`FireList`).replaceWith(PokemonList(`fire`));
+  $section.querySelector(`WaterList`).replaceWith(PokemonList(`water`));
 
   $app.append($section);
 }
