@@ -38,17 +38,17 @@ const pokemonList = (type) => {
 
 RendorPokemonLists = () => {
   const $section = document.createElement(`section`);
-  $section.id = `starter-lists`
+  $section.id = `starter-lists`;
   $section.innerHTML = `
-  <figure>
+  <figure id="grass">
     <h2>Grass</h2>
     <GrassList></GrassList>
   </figure>
-  <figure>
+  <figure id="fire">
     <h2>Fire</h2>
     <FireList></FireList>
   </figure>
-  <figure>
+  <figure id="water">
     <h2>Water</h2>
     <WaterList></WaterList>
   </figure>`;
