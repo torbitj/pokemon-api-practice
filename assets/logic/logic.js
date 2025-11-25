@@ -13,12 +13,24 @@ const getStarterPokemon = async () => {
   console.log(state.starters);
 }
 
-rendorPokemonLists = () => {
+RendorPokemonLists = () => {
   const $section = document.createElement(`section`);
   $section.id = `starter-lists`
-  console.log($app)
+  $section.innerHTML = `
+  <figure>
+    <h2>Grass</h2>
+    <GrassList></GrassList>
+  </figure>
+  <figure>
+    <h2>Fire</h2>
+    <FireList></FireList>
+  </figure>
+  <figure>
+    <h2>Water</h2>
+    <WaterList></WaterList>
+  </figure>`;
 
 }
 
-rendorPokemonLists();
+RendorPokemonLists();
 getStarterPokemon();
