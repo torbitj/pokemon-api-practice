@@ -1,5 +1,6 @@
 const state = {
-  starters: []
+  starters: [],
+  selectedPokemon: {}
 }
 
 const API = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=9`;
@@ -13,12 +14,12 @@ const getStarterPokemon = async () => {
   console.log(state.starters);
 }
 
-const pokemonListItem = (pokemonName) => {
+const pokemonListItem = (pokemon) => {
   const $li = document.createElement(`li`);
-  const upperCaseName = `${pokemonName.charAt(0).toUpperCase()}${pokemonName.slice(1)}`;
+  const upperCaseName = `${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
   $li.innerText = upperCaseName;
   $li.addEventListener(`click`, () => {
-    
+    state.selectedPokemon = pokemon.url;
   })
   return $li;
 }
@@ -34,7 +35,7 @@ const pokemonList = (type) => {
     pokemonLIs = state.starters.slice(6, 9);
   }
   pokemonLIs.forEach((pokemon) => {
-    $ul.append(pokemonListItem(pokemon.name));
+    $ul.append(pokemonListItem(pokemon));
   })
   return $ul;
 }
