@@ -55,3 +55,9 @@ li {
   background-color: #7AC1FF;
   color: #2E2E2E;
 }
+
+#water li,
+#fire li,
+#grass li {
+  cursor: pointer;
+}
