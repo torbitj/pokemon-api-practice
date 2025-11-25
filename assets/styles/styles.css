@@ -24,6 +24,17 @@ li {
   font-size: 1.25em;
 }
 
+img {
+  grid-area: image;
+  height: 400px;
+  width: 400px;
+  justify-self: center;
+}
+
+button {
+  grid-area: back;
+}
+
 #grass li {
   background-color: green;
 }
@@ -39,6 +50,27 @@ li {
 #starter-lists {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+}
+
+#selected-pokemon {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-areas: 
+  ". name ."
+  ". image ."
+  ". stats ."
+  ". back .";
+}
+
+#selected-pokemon h2 {
+  grid-area: name;
+}
+
+#pokemon-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-area: stats;
+  text-align: center;
 }
 
 #grass li:hover {
