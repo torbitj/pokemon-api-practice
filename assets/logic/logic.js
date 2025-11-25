@@ -25,13 +25,10 @@ const pokemonList = (type) => {
   let pokemonLIs = []
   if (type === `grass`) {
     pokemonLIs = state.starters.slice(0, 3);
-    console.log(pokemonLIs)
   } else if (type === `fire`) {
     pokemonLIs = state.starters.slice(3, 6);
-    console.log(pokemonLIs)
   } else {
     pokemonLIs = state.starters.slice(6, 9);
-    console.log(pokemonLIs)
   }
   pokemonLIs.forEach((pokemon) => {
     $ul.append(pokemonListItem(pokemon.name));
