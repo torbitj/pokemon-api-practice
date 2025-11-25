@@ -29,6 +29,13 @@ const PokemonIdName = () => {
   return $h2;
 }
 
+const PokemonImg = () => {
+  const $img = document.createElement(`img`);
+  $img.alt = state.selectedPokemon.name + `facing front`;
+  $img.src = state.selectedPokemon.sprites.other[`official-artwork`].front_default;
+  return $img;
+}
+
 const PokemonListItem = (pokemon) => {
   const $li = document.createElement(`li`);
   const upperCaseName = `${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
@@ -67,6 +74,7 @@ const RendorSelectedPokemon = () => {
   `;
 
   $section.querySelector(`IdName`).replaceWith(PokemonIdName());
+  $section.querySelector(`PokemonImg`).replaceWith(PokemonImg());
 
   $app.append($section);
 }
