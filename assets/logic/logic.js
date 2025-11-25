@@ -13,6 +13,15 @@ const getStarterPokemon = async () => {
   console.log(state.starters);
 }
 
+const pokemonList = (type) => {
+  const $ul = document.createElement(`ul`);
+  let typeLIs = []
+  if (type === `grass`) {
+    typeLIs = state.starters.toSpliced(3, state.starters.length - 1)
+    console.log(typeLIs)
+  }
+}
+
 RendorPokemonLists = () => {
   const $section = document.createElement(`section`);
   $section.id = `starter-lists`
@@ -32,5 +41,8 @@ RendorPokemonLists = () => {
 
 }
 
-RendorPokemonLists();
-getStarterPokemon();
+const init = async () => {
+  await getStarterPokemon();
+  pokemonList(`grass`);
+}
+
