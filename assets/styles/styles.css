@@ -89,6 +89,11 @@ p {
   box-shadow: 5px 5px 5px #4D4D4D;
 }
 
+button:hover {
+  cursor: pointer;
+  box-shadow: 3px 3px 3px red;
+}
+
 #grass li:hover {
   background-color: #5CFF85;
   color: #075410;
@@ -106,6 +111,6 @@ p {
 
 #water li,
 #fire li,
-#grass li {
+#grass li:hover {
   cursor: pointer;
 }

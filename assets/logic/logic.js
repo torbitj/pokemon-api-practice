@@ -11,7 +11,6 @@ const getStarterPokemon = async () => {
   const pokemonData = await response.json();
   const starters = pokemonData.results;
   state.starters = starters;
-  console.log(state.starters);
 }
 
 const getSelectedPokemon = async (pokemonUrl) => {
@@ -19,7 +18,6 @@ const getSelectedPokemon = async (pokemonUrl) => {
   const pokemonData = await response.json();
   state.selectedPokemon = pokemonData;
   RendorSelectedPokemon();
-  console.log(state.selectedPokemon);
 }
 
 const PokemonIdName = () => {
@@ -93,12 +91,11 @@ const RendorSelectedPokemon = () => {
   <button>Go Back</button>
   `;
 
-  const backButton = $section.querySelector(`button`);
-  backButton.addEventListener(`click`, RendorPokemonLists);
   $section.querySelector(`IdName`).replaceWith(PokemonIdName());
   $section.querySelector(`PokemonImg`).replaceWith(PokemonImg());
   $section.querySelector(`PokemonStats`).replaceWith(PokemonStats());
-  
+  const backButton = $section.querySelector(`button`);
+  backButton.addEventListener(`click`, RendorPokemonLists);
 
   $app.append($section);
 }
