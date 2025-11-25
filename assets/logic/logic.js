@@ -14,12 +14,20 @@ const getStarterPokemon = async () => {
   console.log(state.starters);
 }
 
+const getSelectedPokemon = async (pokemonUrl) => {
+  const response = await fetch(pokemonUrl);
+  const pokemonData = await response.json();
+  state.selectedPokemon = pokemonData;
+  RendorSelectedPokemon();
+  console.log(state.selectedPokemon);
+}
+
 const pokemonListItem = (pokemon) => {
   const $li = document.createElement(`li`);
   const upperCaseName = `${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
   $li.innerText = upperCaseName;
   $li.addEventListener(`click`, () => {
-    state.selectedPokemon = pokemon.url;
+    getSelectedPokemon(pokemon.url);
   })
   return $li;
 }
@@ -40,7 +48,20 @@ const pokemonList = (type) => {
   return $ul;
 }
 
-RendorPokemonLists = () => {
+const RendorSelectedPokemon = () => {
+  const $pokemonLists = document.querySelector(`#starter-lists`);
+  $app.removeChild($pokemonLists);
+  const $section = document.createElement(`section`);
+  $section.id = `selected-pokemon`;
+  $section.innerHTML = `
+  <IdName></IdName>
+  <PokemonImg></PokemonImg>
+  <PokemonStats></PokemonStats>
+  `;
+  
+}
+
+const RendorPokemonLists = () => {
   const $section = document.createElement(`section`);
   $section.id = `starter-lists`;
   $section.innerHTML = `
