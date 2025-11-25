@@ -17,6 +17,9 @@ const pokemonListItem = (pokemonName) => {
   const $li = document.createElement(`li`);
   const upperCaseName = `${pokemonName.charAt(0).toUpperCase()}${pokemonName.slice(1)}`;
   $li.innerText = upperCaseName;
+  $li.addEventListener(`click`, () => {
+    
+  })
   return $li;
 }
 
