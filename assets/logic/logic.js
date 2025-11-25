@@ -58,10 +58,14 @@ const RendorSelectedPokemon = () => {
   <PokemonImg></PokemonImg>
   <PokemonStats></PokemonStats>
   `;
-  
+  $app.append($section);
 }
 
 const RendorPokemonLists = () => {
+  const $selectedPokemon = document.querySelector(`#selected-pokemon`)
+  if ($selectedPokemon) {
+    $app.removeChild($selectedPokemon);
+  }
   const $section = document.createElement(`section`);
   $section.id = `starter-lists`;
   $section.innerHTML = `
