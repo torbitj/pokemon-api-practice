@@ -13,13 +13,27 @@ const getStarterPokemon = async () => {
   console.log(state.starters);
 }
 
+const pokemonListItem = async (pokemonUrl) => {
+
+}
+
 const pokemonList = (type) => {
   const $ul = document.createElement(`ul`);
-  let typeLIs = []
+  let pokemonLIs = []
   if (type === `grass`) {
-    typeLIs = state.starters.toSpliced(3, state.starters.length - 1)
-    console.log(typeLIs)
+    pokemonLIs = state.starters.slice(0, 3);
+    console.log(pokemonLIs)
+  } else if (type === `fire`) {
+    pokemonLIs = state.starters.slice(3, 6);
+    console.log(pokemonLIs)
+  } else {
+    pokemonLIs = state.starters.slice(6, 9);
+    console.log(pokemonLIs)
   }
+  pokemonLIs.forEach((pokemon) => {
+    $ul.append(pokemonListItem(pokemon.url));
+  })
+  return $ul;
 }
 
 RendorPokemonLists = () => {
@@ -46,3 +60,4 @@ const init = async () => {
   pokemonList(`grass`);
 }
 
+init();
