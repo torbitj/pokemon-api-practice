@@ -33,6 +33,16 @@ img {
 
 button {
   grid-area: back;
+  width: 10em;
+  font-size: 1.5em;
+  justify-self: center;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+}
+
+p {
+  font-weight: bold;
 }
 
 #grass li {
@@ -55,6 +65,7 @@ button {
 #selected-pokemon {
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
+  row-gap: 2em;
   grid-template-areas: 
   ". name ."
   ". image ."
@@ -67,10 +78,15 @@ button {
 }
 
 #pokemon-stats {
+  margin: 0;
+  padding: 1em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-area: stats;
   text-align: center;
+  border: solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px #4D4D4D;
 }
 
 #grass li:hover {
