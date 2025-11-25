@@ -36,6 +36,21 @@ const PokemonImg = () => {
   return $img;
 }
 
+const PokemonStat = (stat) => {
+  const $p = document.createElement(`p`);
+  $p.innerText = `${stat.stat.name.charAt(0).toUpperCase()}${stat.stat.name.slice(1)}: ${stat.base_stat}`;
+  return $p;
+}
+
+const PokemonStats = () => {
+  const $figure = document.createElement(`figure`);
+  $figure.id = `pokemon-stats`;
+  state.selectedPokemon.stats.forEach((stat) => {
+    $figure.append(PokemonStat(stat));
+  });
+  return $figure;
+}
+
 const PokemonListItem = (pokemon) => {
   const $li = document.createElement(`li`);
   const upperCaseName = `${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
@@ -71,16 +86,21 @@ const RendorSelectedPokemon = () => {
   <IdName></IdName>
   <PokemonImg></PokemonImg>
   <PokemonStats></PokemonStats>
+  <button>Go Back</button>
   `;
 
+  const backButton = $section.querySelector(`button`);
+  backButton.addEventListener(`click`, RendorPokemonLists);
   $section.querySelector(`IdName`).replaceWith(PokemonIdName());
   $section.querySelector(`PokemonImg`).replaceWith(PokemonImg());
+  $section.querySelector(`PokemonStats`).replaceWith(PokemonStats());
+  
 
   $app.append($section);
 }
 
 const RendorPokemonLists = () => {
-  const $selectedPokemon = document.querySelector(`#selected-pokemon`)
+  const $selectedPokemon = document.querySelector(`#selected-pokemon`);
   if ($selectedPokemon) {
     $app.removeChild($selectedPokemon);
   }
