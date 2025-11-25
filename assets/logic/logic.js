@@ -13,8 +13,10 @@ const getStarterPokemon = async () => {
   console.log(state.starters);
 }
 
-const pokemonListItem = async (pokemonUrl) => {
-
+const pokemonListItem = (pokemonName) => {
+  const $li = document.createElement(`li`);
+  $li.innerText = pokemonName;
+  return $li;
 }
 
 const pokemonList = (type) => {
@@ -31,7 +33,7 @@ const pokemonList = (type) => {
     console.log(pokemonLIs)
   }
   pokemonLIs.forEach((pokemon) => {
-    $ul.append(pokemonListItem(pokemon.url));
+    $ul.append(pokemonListItem(pokemon.name));
   })
   return $ul;
 }
@@ -52,12 +54,12 @@ RendorPokemonLists = () => {
     <h2>Water</h2>
     <WaterList></WaterList>
   </figure>`;
-
+  
 }
 
 const init = async () => {
   await getStarterPokemon();
-  pokemonList(`grass`);
+  RendorPokemonLists();
 }
 
 init();
