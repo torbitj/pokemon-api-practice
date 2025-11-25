@@ -1,0 +1,63 @@
+body {
+  background-color: #F2F2F2;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  padding: 3px;
+  margin: 3px;;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+#grass li {
+  background-color: green;
+}
+
+#fire li {
+  background-color: rgb(243, 70, 7);
+}
+
+#water li {
+  background-color: rgb(0, 102, 255);
+}
+
+#starter-lists {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#grass li:hover {
+  background-color: #5CFF85;
+  color: #075410;
+}
+
+#fire li:hover {
+  background-color: #FFA947;
+  color: #2E2E2E;
+}
+
+#water li:hover {
+  background-color: #7AC1FF;
+  color: #2E2E2E;
+}
+
+#water li,
+#fire li,
+#grass li {
+  cursor: pointer;
+}
