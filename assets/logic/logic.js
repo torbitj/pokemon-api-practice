@@ -15,7 +15,8 @@ const getStarterPokemon = async () => {
 
 const pokemonListItem = (pokemonName) => {
   const $li = document.createElement(`li`);
-  $li.innerText = pokemonName;
+  const upperCaseName = `${pokemonName.charAt(0).toUpperCase()}${pokemonName.slice(1)}`;
+  $li.innerText = upperCaseName;
   return $li;
 }
 
@@ -54,7 +55,12 @@ RendorPokemonLists = () => {
     <h2>Water</h2>
     <WaterList></WaterList>
   </figure>`;
-  
+
+  $section.querySelector(`GrassList`).replaceWith(pokemonList(`grass`));
+  $section.querySelector(`FireList`).replaceWith(pokemonList(`fire`));
+  $section.querySelector(`WaterList`).replaceWith(pokemonList(`water`));
+
+  $app.append($section);
 }
 
 const init = async () => {
