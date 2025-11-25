@@ -34,13 +34,13 @@ const PokemonImg = () => {
   return $img;
 }
 
-const PokemonStat = (stat) => {
+const PokemonStat = (pokemonStat) => {
   const $p = document.createElement(`p`);
-  if (stat.stat.name.length < 3) {
-    $p.innerText = `${stat.stat.name.toUpperCase()}: ${stat.base_stat}`;
+  if (pokemonStat.stat.name.length < 3) {
+    $p.innerText = `${pokemonStat.stat.name.toUpperCase()}: ${pokemonStat.base_stat}`;
     return $p;
   }
-  $p.innerText = `${stat.stat.name.charAt(0).toUpperCase()}${stat.stat.name.slice(1)}: ${stat.base_stat}`;
+  $p.innerText = `${pokemonStat.stat.name.charAt(0).toUpperCase()}${pokemonStat.stat.name.slice(1)}: ${pokemonStat.base_stat}`;
   return $p;
 }
 
