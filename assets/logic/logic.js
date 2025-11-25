@@ -22,7 +22,14 @@ const getSelectedPokemon = async (pokemonUrl) => {
   console.log(state.selectedPokemon);
 }
 
-const pokemonListItem = (pokemon) => {
+const PokemonIdName = () => {
+  const $h2 = document.createElement(`h2`);
+  const { name, id } = state.selectedPokemon;
+  $h2.innerText = `Pokédex Number: 00${id} ${name.charAt(0).toUpperCase()}${name.slice(1)}`;
+  return $h2;
+}
+
+const PokemonListItem = (pokemon) => {
   const $li = document.createElement(`li`);
   const upperCaseName = `${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
   $li.innerText = upperCaseName;
@@ -32,7 +39,7 @@ const pokemonListItem = (pokemon) => {
   return $li;
 }
 
-const pokemonList = (type) => {
+const PokemonList = (type) => {
   const $ul = document.createElement(`ul`);
   let pokemonLIs = []
   if (type === `grass`) {
@@ -43,7 +50,7 @@ const pokemonList = (type) => {
     pokemonLIs = state.starters.slice(6, 9);
   }
   pokemonLIs.forEach((pokemon) => {
-    $ul.append(pokemonListItem(pokemon));
+    $ul.append(PokemonListItem(pokemon));
   })
   return $ul;
 }
@@ -58,6 +65,9 @@ const RendorSelectedPokemon = () => {
   <PokemonImg></PokemonImg>
   <PokemonStats></PokemonStats>
   `;
+
+  $section.querySelector(`IdName`).replaceWith(PokemonIdName());
+
   $app.append($section);
 }
 
@@ -82,9 +92,9 @@ const RendorPokemonLists = () => {
     <WaterList></WaterList>
   </figure>`;
 
-  $section.querySelector(`GrassList`).replaceWith(pokemonList(`grass`));
-  $section.querySelector(`FireList`).replaceWith(pokemonList(`fire`));
-  $section.querySelector(`WaterList`).replaceWith(pokemonList(`water`));
+  $section.querySelector(`GrassList`).replaceWith(PokemonList(`grass`));
+  $section.querySelector(`FireList`).replaceWith(PokemonList(`fire`));
+  $section.querySelector(`WaterList`).replaceWith(PokemonList(`water`));
 
   $app.append($section);
 }
