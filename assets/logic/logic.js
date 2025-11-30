@@ -106,10 +106,25 @@ const RendorSelectedPokemon = () => {
 
 const RendorPokemonLists = () => {
   const $selectedPokemon = document.querySelector(`#selected-pokemon`);
-  if ($selectedPokemon) {
-    $app.removeChild($selectedPokemon);
+  const $pokemonList = document.querySelector(`#generations`)
+  if ($selectedPokemon || $pokemonList) {
+    $app.innerHTML = ``;
   }
+  const $genH1 = document.createElement(`h1`);
   const $section = document.createElement(`section`);
+  switch (state.generation) {
+    case 2:
+      $genH1.innerText = `Johto Starter Pokémon`
+      break;
+    
+    case 3:
+      $genH1.innerText = `Hoenn Starter Pokémon`;
+      break;
+  
+    default:
+      $genH1.innerText = `Original Kanto Starter Pokémon`;
+      break;
+  }
   $section.id = `starter-lists`;
   $section.innerHTML = `
   <figure id="grass">
@@ -129,7 +144,14 @@ const RendorPokemonLists = () => {
   $section.querySelector(`FireList`).replaceWith(PokemonList(`fire`));
   $section.querySelector(`WaterList`).replaceWith(PokemonList(`water`));
 
-  $app.append($section);
+  $app.append($genH1, $section);
+}
+
+const RendorGens = () => {
+  const regions = []
+  const $h1 = document.createElement(`h1`);
+  const $section = document.createElement(`section`);
+
 }
 
 const init = async () => {
