@@ -58,6 +58,22 @@ p {
   font-weight: bold;
 }
 
+#grass {
+  grid-area: grass;
+}
+
+#fire {
+  grid-area: fire;
+}
+
+#water {
+  grid-area: water;
+}
+
+#region-btn {
+  grid-area: region;
+}
+
 #grass li {
   background-color: green;
 }
@@ -73,6 +89,9 @@ p {
 #starter-lists {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 
+  "grass fire water"
+  ". region .";
 }
 
 #selected-pokemon {

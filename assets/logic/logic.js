@@ -148,7 +148,7 @@ const RendorPokemonLists = () => {
     <h2>Water</h2>
     <WaterList></WaterList>
   </figure>
-  <button class="back-btn">Back to Regions</button>`;
+  <button id="region-btn" class="back-btn">Back to Regions</button>`;
 
   $section.querySelector(`GrassList`).replaceWith(PokemonList(`grass`));
   $section.querySelector(`FireList`).replaceWith(PokemonList(`fire`));
@@ -158,6 +158,7 @@ const RendorPokemonLists = () => {
 }
 
 const RendorGens = () => {
+  $app.innerHTML = ``;
   const regions = [
     {
       id: 1,
