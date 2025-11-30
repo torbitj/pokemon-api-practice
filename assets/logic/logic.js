@@ -148,10 +148,33 @@ const RendorPokemonLists = () => {
 }
 
 const RendorGens = () => {
-  const regions = []
+  const regions = [
+    {
+      id: 1,
+      name: `Kanto`
+    },
+    {
+      id: 2,
+      name: `Johto`
+    },
+    {
+      id: 3,
+      name: `Hoenn`
+    }
+  ];
   const $h1 = document.createElement(`h1`);
   const $section = document.createElement(`section`);
-
+  $section.id = `regions-section`;
+  regions.forEach((region) => {
+    const $button = document.createElement(`button`);
+    $button.classList.add(`region`);
+    $button.innerText = `${region.name}`;
+    $button.addEventListener(`click`, (event) => {
+      state.generation = region.id;
+      
+    })
+    $section.append($button);
+  })
 }
 
 const init = async () => {
