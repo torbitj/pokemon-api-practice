@@ -58,6 +58,29 @@ p {
   font-weight: bold;
 }
 
+.region {
+  background-color: brown;
+}
+
+#regions-section {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-areas: 
+  "kanto . johto . hoenn";
+}
+
+#kanto {
+  grid-area: kanto;
+}
+
+#johto {
+  grid-area: johto;
+}
+
+#hoenn {
+  grid-area: hoenn;
+}
+
 #grass {
   grid-area: grass;
 }
@@ -124,6 +147,11 @@ p {
 button:hover {
   cursor: pointer;
   box-shadow: 3px 3px 3px red;
+}
+
+.region:hover {
+  background-color: green;
+  box-shadow: none;
 }
 
 #grass li:hover {

@@ -182,6 +182,7 @@ const RendorGens = () => {
   regions.forEach((region) => {
     const $button = document.createElement(`button`);
     $button.classList.add(`region`);
+    $button.id = `${region.name.toLowerCase()}`;
     $button.innerText = `${region.name}`;
     $button.addEventListener(`click`, async (event) => {
       state.generation = region.id;
