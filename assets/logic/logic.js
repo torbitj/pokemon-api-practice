@@ -11,10 +11,19 @@ const GEN3 = `?offset=251&limit=9`;
 const $app = document.querySelector('#app');
 
 const getStarterPokemon = async () => {
-  const response = await fetch(API);
+  let gen = null;
+  if (state.generation === 1) {
+    gen = GEN1;
+  } else if (state.generation === 2) {
+    gen = GEN2;
+  } else {
+    gen = GEN3;
+  }
+  const response = await fetch(API + gen);
   const pokemonData = await response.json();
   const starters = pokemonData.results;
   state.starters = starters;
+  RendorPokemonLists();
 }
 
 const getSelectedPokemon = async (pokemonUrl) => {
@@ -92,7 +101,7 @@ const RendorSelectedPokemon = () => {
   <Name></Name>
   <PokemonImg></PokemonImg>
   <PokemonStats></PokemonStats>
-  <button>Go Back</button>
+  <button class="back-btn">Go Back</button>
   `;
 
   $section.querySelector(`Name`).replaceWith(PokemonName());
@@ -106,8 +115,8 @@ const RendorSelectedPokemon = () => {
 
 const RendorPokemonLists = () => {
   const $selectedPokemon = document.querySelector(`#selected-pokemon`);
-  const $pokemonList = document.querySelector(`#generations`)
-  if ($selectedPokemon || $pokemonList) {
+  const $regionsList = document.querySelector(`#regions-section`);
+  if ($selectedPokemon || $regionsList) {
     $app.innerHTML = ``;
   }
   const $genH1 = document.createElement(`h1`);
@@ -138,7 +147,8 @@ const RendorPokemonLists = () => {
   <figure id="water">
     <h2>Water</h2>
     <WaterList></WaterList>
-  </figure>`;
+  </figure>
+  <button class="back-btn">Back to Regions</button>`;
 
   $section.querySelector(`GrassList`).replaceWith(PokemonList(`grass`));
   $section.querySelector(`FireList`).replaceWith(PokemonList(`fire`));
@@ -163,23 +173,20 @@ const RendorGens = () => {
     }
   ];
   const $h1 = document.createElement(`h1`);
+  $h1.innerText = `Choose your Pokémon Region`;
   const $section = document.createElement(`section`);
   $section.id = `regions-section`;
   regions.forEach((region) => {
     const $button = document.createElement(`button`);
     $button.classList.add(`region`);
     $button.innerText = `${region.name}`;
-    $button.addEventListener(`click`, (event) => {
+    $button.addEventListener(`click`, async (event) => {
       state.generation = region.id;
-      
+      await getStarterPokemon();
     })
     $section.append($button);
   })
+  $app.append($h1, $section);
 }
 
-const init = async () => {
-  await getStarterPokemon();
-  RendorPokemonLists();
-}
-
-init();
+RendorGens();
