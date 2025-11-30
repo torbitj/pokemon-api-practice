@@ -1,9 +1,13 @@
 const state = {
+  generation: null,
   starters: [],
   selectedPokemon: {}
 }
 
-const API = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=9`;
+const API = `https://pokeapi.co/api/v2/pokemon`;
+const GEN1 = `?offset=0&limit=9`;
+const GEN2 = `?offset=151&limit=9`;
+const GEN3 = `?offset=251&limit=9`;
 const $app = document.querySelector('#app');
 
 const getStarterPokemon = async () => {
@@ -20,10 +24,10 @@ const getSelectedPokemon = async (pokemonUrl) => {
   RendorSelectedPokemon();
 }
 
-const PokemonIdName = () => {
+const PokemonName = () => {
   const $h2 = document.createElement(`h2`);
-  const { name, id } = state.selectedPokemon;
-  $h2.innerText = `Pokédex Number: 00${id} ${name.charAt(0).toUpperCase()}${name.slice(1)}`;
+  const { name } = state.selectedPokemon;
+  $h2.innerText = `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
   return $h2;
 }
 
@@ -85,13 +89,13 @@ const RendorSelectedPokemon = () => {
   const $section = document.createElement(`section`);
   $section.id = `selected-pokemon`;
   $section.innerHTML = `
-  <IdName></IdName>
+  <Name></Name>
   <PokemonImg></PokemonImg>
   <PokemonStats></PokemonStats>
   <button>Go Back</button>
   `;
 
-  $section.querySelector(`IdName`).replaceWith(PokemonIdName());
+  $section.querySelector(`Name`).replaceWith(PokemonName());
   $section.querySelector(`PokemonImg`).replaceWith(PokemonImg());
   $section.querySelector(`PokemonStats`).replaceWith(PokemonStats());
   const backButton = $section.querySelector(`button`);
