@@ -63,6 +63,7 @@ p {
 }
 
 #regions-section {
+  margin-top: 2em;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-areas: 
@@ -182,7 +183,20 @@ button:hover {
     padding-left: 0;
   }
 
+  #regions-section {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "kanto"
+    "johto"
+    "hoenn";
+  }
+
   #starter-lists {
+    grid-template-areas: 
+    "grass"
+    "fire"
+    "water"
+    "region";
     grid-template-columns: 1fr;
   }
 
