@@ -153,6 +153,8 @@ const RendorPokemonLists = () => {
   $section.querySelector(`GrassList`).replaceWith(PokemonList(`grass`));
   $section.querySelector(`FireList`).replaceWith(PokemonList(`fire`));
   $section.querySelector(`WaterList`).replaceWith(PokemonList(`water`));
+  const backButton = $section.querySelector(`button`);
+  backButton.addEventListener(`click`, RendorGens)
 
   $app.append($genH1, $section);
 }
