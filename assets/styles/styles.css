@@ -58,6 +58,46 @@ p {
   font-weight: bold;
 }
 
+.region {
+  background-color: brown;
+}
+
+#regions-section {
+  margin-top: 2em;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-areas: 
+  "kanto . johto . hoenn";
+}
+
+#kanto {
+  grid-area: kanto;
+}
+
+#johto {
+  grid-area: johto;
+}
+
+#hoenn {
+  grid-area: hoenn;
+}
+
+#grass {
+  grid-area: grass;
+}
+
+#fire {
+  grid-area: fire;
+}
+
+#water {
+  grid-area: water;
+}
+
+#region-btn {
+  grid-area: region;
+}
+
 #grass li {
   background-color: green;
 }
@@ -73,6 +113,9 @@ p {
 #starter-lists {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 
+  "grass fire water"
+  ". region .";
 }
 
 #selected-pokemon {
@@ -107,6 +150,11 @@ button:hover {
   box-shadow: 3px 3px 3px red;
 }
 
+.region:hover {
+  background-color: green;
+  box-shadow: none;
+}
+
 #grass li:hover {
   background-color: #5CFF85;
   color: #075410;
@@ -135,7 +183,20 @@ button:hover {
     padding-left: 0;
   }
 
+  #regions-section {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "kanto"
+    "johto"
+    "hoenn";
+  }
+
   #starter-lists {
+    grid-template-areas: 
+    "grass"
+    "fire"
+    "water"
+    "region";
     grid-template-columns: 1fr;
   }
 
